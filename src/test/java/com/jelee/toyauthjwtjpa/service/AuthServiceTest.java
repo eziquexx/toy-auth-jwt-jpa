@@ -3,6 +3,7 @@ package com.jelee.toyauthjwtjpa.service;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -57,6 +58,24 @@ public class AuthServiceTest {
     assertThat(passwordEncoder.matches("testpass", savedUser.get().getPassword())).isTrue();
     System.out.println("저장된 username: " + savedUser.get().getUsername());
     System.out.println("저장된 password: " + savedUser.get().getPassword());
+  }
+
+  @Test
+  @DisplayName("중복 회원가입 예외 테스트")
+  void duplicateRegisterTest() {
+    JoinRequest request = new JoinRequest();
+    request.setUsername("testuser");
+    request.setPassword("1234");
+
+    authService.register(request);
+    System.out.println("첫 번째 가입 완료");
+
+    try {
+      authService.register(request); // 두 번째 가입 시도 -> 예외 발생
+    } catch (IllegalArgumentException e) {
+      System.out.println("예외 메시지: " + e.getMessage());
+      assertThat(e.getMessage()).contains("이미 사용 중인 아이디");
+    }
   }
 
   // SecurityConfig에서 PasswordEncoder를 @Bean 주입 하였기 때문에 필요 없음.
