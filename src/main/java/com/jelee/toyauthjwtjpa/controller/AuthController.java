@@ -1,6 +1,7 @@
 package com.jelee.toyauthjwtjpa.controller;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -8,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jelee.toyauthjwtjpa.dto.JoinRequest;
+import com.jelee.toyauthjwtjpa.dto.LoginRequest;
 import com.jelee.toyauthjwtjpa.service.AuthService;
 
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -26,5 +29,24 @@ public class AuthController {
     return ResponseEntity
             .status(HttpStatus.CREATED)
             .body("회원가입이 완료되었습니다. userId: " + userId);
+  }
+
+  // 로그인
+  @PostMapping("/login")
+  public ResponseEntity<?> login(@RequestBody LoginRequest request, HttpServletResponse response) {
+    String token = authService.login(request);
+
+    // JWT를 HttpOnly 쿠키에 저장
+    ResponseCookie cookie = ResponseCookie.from("JWT", token)
+            .httpOnly(true)
+            .secure(false) // HTTPS 환경에서 true로 설절ㅇ
+            .path("/")
+            .maxAge(24 * 60 * 60)
+            .sameSite("Strict")
+            .build();
+    
+    response.addHeader("Set-Cookie", cookie.toString());
+
+    return ResponseEntity.ok("로그인 성공");
   }
 }
