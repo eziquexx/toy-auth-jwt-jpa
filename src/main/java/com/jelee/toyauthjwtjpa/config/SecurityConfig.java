@@ -17,7 +17,7 @@ public class SecurityConfig {
       .csrf(csrf -> csrf.disable()) // 테스트를 위해 잠시 꺼두기
       // H2 콘솔, auth 이후 url 접근 허락
       .authorizeHttpRequests(auth -> auth
-        .requestMatchers("/", "/favicon.ico", 
+        .requestMatchers("/", "/index.html", 
         "/css/**", "/js/**", "/h2-console/**", "/auth/**").permitAll()
         .anyRequest().authenticated()
       )
