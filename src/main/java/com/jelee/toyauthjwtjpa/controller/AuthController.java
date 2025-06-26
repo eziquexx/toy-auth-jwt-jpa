@@ -59,4 +59,20 @@ public class AuthController {
     User user = (User) authentication.getPrincipal();
     return ResponseEntity.ok("로그인한 사용자: " + user.getUsername());
   }
+
+  // 로그아웃
+  @PostMapping("/logout")
+  public ResponseEntity<?> logout(HttpServletResponse response) {
+    // JWT 쿠키를 삭제
+    ResponseCookie deleteCookie = ResponseCookie.from("JWT", "")
+            .httpOnly(true)
+            .secure(false) // HTTPS 사용 시 true
+            .path("/")
+            .maxAge(0) // 쿠키 즉시 만료
+            .sameSite("Strict")
+            .build();
+
+    response.addHeader("Set-Cookie", deleteCookie.toString());
+    return ResponseEntity.ok("로그아웃 성공: 쿠키 삭제됨");
+  }
 }
