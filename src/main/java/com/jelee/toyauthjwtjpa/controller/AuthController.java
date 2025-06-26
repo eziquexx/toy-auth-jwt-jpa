@@ -53,6 +53,7 @@ public class AuthController {
     return ResponseEntity.ok("로그인 성공");
   }
 
+  // 사용자 인증 - JWT
   @GetMapping("/me")
   public ResponseEntity<?> getMyInfo(Authentication authentication) {
     User user = (User) authentication.getPrincipal();
