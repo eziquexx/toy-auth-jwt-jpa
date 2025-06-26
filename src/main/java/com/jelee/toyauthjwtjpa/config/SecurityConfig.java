@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -34,6 +35,7 @@ public class SecurityConfig {
         .anyRequest().authenticated()
       )
       .addFilterBefore(new JwtAuthenticationFilter(jwtProvider, userRepository), UsernamePasswordAuthenticationFilter.class)
+      .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
       // .csrf(csrf -> csrf.ignoringRequestMatchers("/h2-console/**", "/auth/**")) // H2 콘솔, auth경로 이후의 주소는 CSRF 무시
       .headers(headers -> headers.frameOptions().sameOrigin()) // H2에서 iframe 허용
       .formLogin(Customizer.withDefaults()); // 기본 로그인 폼 사용 -> API 서버에서는 보통 사용 안 한다고해서 나중에 삭제 가능
