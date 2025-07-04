@@ -89,3 +89,6 @@ localhost:8080/h2-console 접속 > User Name 기본 sa로 되어있는 상태에
 # 5. users 테이블 조회
 좌측 USERS 테이블 클릭 > ' SELECT * FROM USERS ' 적혀 있는 상태에서 위에 있는 Run 버튼 클릭
 ```
+
+---
+
