@@ -26,12 +26,12 @@
 ---
 
 ## 🎬 데모 보기
-👉 [데모 영상 보러가기](https://youtu.be/AX61k0nWtvM) - CLI로 도서 등록/검색/조회/삭제 데모 영상
+👉 [데모 영상 보러가기](https://youtu.be/UAJtkhp45Xo) - CLI로 도서 등록/검색/조회/삭제 데모 영상
 
 ---
 
 ## 📘 프로젝트 상세 기록 (블로그)
-👉 [포스팅 보러가기](https://dev-jelee.tistory.com/entry/toy-project-JWT-%EA%B8%B0%EB%B0%98-%EC%9D%B8%EC%A6%9D%EC%9D%B8%EA%B0%80-%EA%B5%AC%ED%98%84-Spring-Boot)
+👉 [포스팅 보러가기](https://dev-jelee.tistory.com/entry/toy-project-JWT-%EA%B8%B0%EB%B0%98-%EC%9D%B8%EC%A6%9D%EC%9D%B8%EA%B0%80-%EA%B5%AC%ED%98%84-Spring-Boot) - 티스토리에 올린 포스트
 
 ---
 
