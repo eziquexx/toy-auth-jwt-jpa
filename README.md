@@ -10,10 +10,32 @@
 ---
 
 ## 🧩 구현 기능
-1. 회원가입: 비밀번호는 BCrypt로 암호화하여 저장
-2. 로그인: 로그인 시 JWT 토큰이 발급, HttpOnly 쿠키에 저장
-3. 로그아웃: 로그아웃 시 HttpOnly 쿠키의 JWT 토큰 삭제
-4. 인가: 페이지 접근 시 JWT 토큰을 검증해 권한 확인
+<table>
+  <thead>
+    <tr>
+      <th>기능</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>회원가입</td>
+      <td>비밀번호는 BCrypt로 암호화하여 저장</td>
+    </tr>
+    <tr>
+      <td>로그인</td>
+      <td>로그인 시 JWT 토큰이 발급, HttpOnly 쿠키에 저장</td>
+    </tr>
+    <tr>
+      <td>로그아웃</td>
+      <td>로그아웃 시 HttpOnly 쿠키의 JWT 토큰 삭제</td>
+    </tr>
+    <tr>
+      <td>인가</td>
+      <td>페이지 접근 시 JWT 토큰을 검증해 권한 확인</td>
+    </tr>
+  </tbody>
+</table>
 
 ---
 
